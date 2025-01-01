@@ -1,0 +1,9 @@
+{
+  "HomePage": {
+    "title": "Hola mundo!",
+    "about": "Ir a la página de acerca de"
+  },
+  "Footer": {
+    "main": "MyBlog. Todos los derechos reservados."
+  }
+} 
