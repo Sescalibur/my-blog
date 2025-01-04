@@ -3,15 +3,16 @@ import { MongoClient } from 'mongodb'
 if (!process.env.MONGODB_URI) {
   throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
 }
-
 const uri = process.env.MONGODB_URI
-const options = {}
+const options = {
+  retryWrites: true,
+  w: 'majority'
+}
 
 let client
 let clientPromise: Promise<MongoClient>
 
 if (process.env.NODE_ENV === 'development') {
-  // Global değişkeni development'ta yeniden kullan
   const globalWithMongo = global as typeof globalThis & {
     _mongoClientPromise?: Promise<MongoClient>
   }
@@ -21,10 +22,11 @@ if (process.env.NODE_ENV === 'development') {
     globalWithMongo._mongoClientPromise = client.connect()
   }
   clientPromise = globalWithMongo._mongoClientPromise
+  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
 } else {
-  // Production'da yeni bir bağlantı oluştur
   client = new MongoClient(uri, options)
   clientPromise = client.connect()
+  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
 }
 
 export default clientPromise 

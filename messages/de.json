@@ -1,10 +1,79 @@
 {
   "HomePage": {
-    "title": "Hallo Welt!",
-    "about": "Gehe zur Seite über mich"
+    "title": "Willkommen bei MyBlog",
+    "description": "Ein moderner Blog mit mehreren Themen und Sprachunterstützung"
+  },
+  "Navigation": {
+    "home": "Startseite",
+    "blog": "Blog",
+    "about": "Über mich"
+  },
+  "Blog": {
+    "title": "Blog Posts",
+    "readMore": "Read More",
+    "noPosts": "Keine Posts gefunden",
+    "newPost": "Neuer Blog Post",
+    "postTitle": "Titel",
+    "postContent": "Inhalt",
+    "publish": "Veröffentlichen",
+    "publishing": "Veröffentlichen...",
+    "loginToPost": "Bitte melde dich an, um einen Post zu erstellen",
+    "postCreated": "Post erfolgreich erstellt",
+    "postUpdated": "Post erfolgreich aktualisiert",
+    "postDeleted": "Post erfolgreich gelöscht",
+    "loginToUpdate": "Bitte melde dich an, um einen Post zu aktualisieren",
+    "loginToDelete": "Bitte melde dich an, um einen Post zu löschen",
+    "loginPost": "Bitte melde dich an, um einen Post zu erstellen",
+    "error": "Something went wrong",
+    "errorTitle": "Titel muss mindestens 3 Zeichen lang sein",
+    "errorContent": "Inhalt muss mindestens 10 Zeichen lang sein",
+    "editPost": "Post bearbeiten",
+    "update": "Aktualisieren",
+    "updating": "Aktualisieren..."
+  },
+  "BlogPost": {
+    "backToBlog": "Back to Blog",
+    "publishedOn": "Published on",
+    "edit": "Bearbeiten",
+    "delete": "Löschen",
+    "deleting": "Löschen...",
+    "deleteConfirm": "Sind Sie sicher, dass Sie diesen Post löschen möchten?",
+    "deleteError": "Fehler beim Löschen des Posts",
+    "editError": "Fehler beim Bearbeiten des Posts"
   },
   "Footer": {
-    "main": "MyBlog. Alle Rechte vorbehalten."
+    "main": "Alle Rechte vorbehalten"
+  },
+  "Auth": {
+    "signIn": "Anmelden",
+    "email": "Email",
+    "password": "Passwort",
+    "signUp": "Registrieren",
+    "name": "Name",
+    "forgotPassword": "Passwort vergessen?",
+    "confirmPassword": "Passwort bestätigen",
+    "passwordsDontMatch": "Passwörter stimmen nicht überein",
+    "alreadyHaveAccount": "Hast du bereits ein Konto?",
+    "signUpSuccess": "Registrierung erfolgreich! Jetzt kannst du dich einloggen."
+  },
+  "Navbar": {
+    "signIn": "Anmelden",
+    "signOut": "Ausloggen",
+    "signUp": "Registrieren",
+    "home": "Startseite",
+    "blog": "Blog",
+    "about": "Über mich",
+    "newPost": "Neuer Blog Post"
+  },
+  "Comments": {
+    "title": "Kommentare",
+    "comment": "Kommentar",
+    "commenting": "Kommentieren...",
+    "placeholder": "Schreiben Sie Ihren Kommentar...",
+    "cancel": "Abbrechen",
+    "delete": "Löschen",
+    "deleteConfirm": "Sind Sie sicher, dass Sie diesen Kommentar löschen möchten?",
+    "noComments": "Keine Kommentare",
+    "loginToComment": "Bitte melde dich an, um zu kommentieren"
   }
-
 } 

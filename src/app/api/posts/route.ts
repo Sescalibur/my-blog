@@ -7,9 +7,11 @@ import { z } from 'zod'
 import { rateLimit } from '@/lib/rateLimit'
 import { testRedisConnection } from '@/lib/redis'
 import { cacheGet, cacheSet, cacheDelete } from '@/lib/cache'
+import dbConnect from '@/lib/mongoose'
 
 // Add this for testing
 export const createPost = async (data: CreatePostInput, userId: string) => {
+  await dbConnect()
   return await Post.create({
     ...data,
     author: userId
@@ -49,10 +51,14 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json()
-    const validatedData = createPostSchema.parse(body)
-    const post = await createPost(validatedData, session.user.id)
+    //console.log('Request body:', body)
     
-    // Invalidate cache when new post is created
+    const validatedData = createPostSchema.parse(body)
+    //console.log('Validated data:', validatedData)
+    
+    const post = await createPost(validatedData, session.user.id)
+    //console.log('Created post:', post)
+    
     await cacheDelete(CACHE_KEY_POSTS)
     
     return new Response(JSON.stringify(post), { 
@@ -60,13 +66,13 @@ export async function POST(req: Request) {
       headers: { 'Content-Type': 'application/json' }
     })
   } catch (error) {
+    console.error('Failed to create post:', error)
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify({ errors: error.errors }), { 
         status: 400,
         headers: { 'Content-Type': 'application/json' }
       })
     }
-    console.error('Failed to create post:', error)
     if (error instanceof mongoose.Error.ValidationError) {
       return new Response('Invalid data', { status: 400 })
     }
@@ -76,6 +82,8 @@ export async function POST(req: Request) {
 
 export async function GET() {
   try {
+    await dbConnect()
+
     // Try to get from cache first
     const cachedPosts = await cacheGet(CACHE_KEY_POSTS)
     if (cachedPosts) {
@@ -89,7 +97,7 @@ export async function GET() {
     const posts = await Post.find().populate('author', 'name email')
     
     // Cache the results
-    await cacheSet(CACHE_KEY_POSTS, posts, 300) // Cache for 5 minutes
+    await cacheSet(CACHE_KEY_POSTS, posts, 300)
 
     return new Response(JSON.stringify(posts), {
       status: 200,

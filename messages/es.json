@@ -1,9 +1,79 @@
 {
   "HomePage": {
-    "title": "Hola mundo!",
-    "about": "Ir a la página de acerca de"
+    "title": "Willkommen bei MyBlog",
+    "description": "Ein moderner Blog mit mehreren Themen und Sprachunterstützung"
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "blog": "Blog",
+    "about": "Sobre mí"
+  },
+  "Blog": {
+    "title": "Blog Posts",
+    "readMore": "Read More",
+    "noPosts": "No posts found",
+    "newPost": "Nuevo Blog Post",
+    "postTitle": "Título",
+    "postContent": "Contenido",
+    "publish": "Publicar",
+    "publishing": "Publicando...",
+    "loginToPost": "Por favor, inicia sesión para crear un post",
+    "postCreated": "Post creado correctamente",
+    "postUpdated": "Post actualizado correctamente",
+    "postDeleted": "Post eliminado correctamente",
+    "loginToUpdate": "Por favor, inicia sesión para actualizar un post",
+    "loginToDelete": "Por favor, inicia sesión para eliminar un post",
+    "loginPost": "Por favor, inicia sesión para crear un post",
+    "error": "Algo salió mal",
+    "errorTitle": "El título debe tener al menos 3 caracteres",
+    "errorContent": "El contenido debe tener al menos 10 caracteres",
+    "editPost": "Editar Post",
+    "update": "Actualizar",
+    "updating": "Actualizando..."
+  },
+  "BlogPost": {
+    "backToBlog": "Back to Blog",
+    "publishedOn": "Published on",
+    "edit": "Editar",
+    "delete": "Eliminar",
+    "deleting": "Eliminando...",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar este post?",
+    "deleteError": "Error al eliminar el post",
+    "editError": "Error al editar el post"
   },
   "Footer": {
-    "main": "MyBlog. Todos los derechos reservados."
+    "main": "Todos los derechos reservados"
+  },
+  "Auth": {
+    "signIn": "Iniciar sesión",
+    "email": "Email",
+    "password": "Contraseña",
+    "signUp": "Registrarse",
+    "name": "Nombre",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "confirmPassword": "Confirmar contraseña",
+    "passwordsDontMatch": "Las contraseñas no coinciden",
+    "alreadyHaveAccount": "¿Ya tienes una cuenta?",
+    "signUpSuccess": "Registro exitoso! Ahora puedes iniciar sesión."
+  },
+  "Navbar": {
+    "signIn": "Iniciar sesión",
+    "signOut": "Cerrar sesión",
+    "signUp": "Registrarse",
+    "home": "Inicio",
+    "blog": "Blog",
+    "about": "Sobre mí",
+    "newPost": "Nuevo Blog Post"
+  },
+  "Comments": {
+    "title": "Comentarios",
+    "comment": "Comentario",
+    "commenting": "Comentando...",
+    "placeholder": "Escribe tu comentario...",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "deleteConfirm": "¿Estás seguro de que quieres eliminar este comentario?",
+    "noComments": "No hay comentarios",
+    "loginToComment": "Por favor, inicia sesión para comentar"
   }
 } 

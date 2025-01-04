@@ -1,9 +1,79 @@
 {
   "HomePage": {
-    "title": "Merhaba Dünya!",
-    "about": "Hakkımızda sayfasına git"
+    "title": "MyBlog'a Hoşgeldiniz",
+    "description": "Modern bir blog, çoklu tema ve dil desteği ile"
+  },
+  "Navigation": {
+    "home": "Ana Sayfa",
+    "blog": "Blog",
+    "about": "Hakkımızda"
+  },
+  "Blog": {
+    "title": "Blog Yazıları",
+    "readMore": "Daha Fazla Oku",
+    "noPosts": "Hiç yazı bulunamadı",
+    "newPost": "Yeni Blog Post",
+    "postTitle": "Başlık",
+    "postContent": "İçerik",
+    "publish": "Yayınla",
+    "publishing": "Yayınlanıyor...",
+    "loginToPost": "Lütfen giriş yapınız",
+    "postCreated": "Yazı başarıyla oluşturuldu",
+    "postUpdated": "Yazı başarıyla güncellendi",
+    "postDeleted": "Yazı başarıyla silindi",
+    "loginToUpdate": "Lütfen giriş yapınız",
+    "loginToDelete": "Lütfen giriş yapınız",
+    "loginPost": "Lütfen giriş yapınız",
+    "error": "Bir şeyler ters gitti",
+    "errorTitle": "Başlık en az 3 karakter olmalıdır",
+    "errorContent": "İçerik en az 10 karakter olmalıdır",
+    "editPost": "Yazıyı Düzenle",
+    "update": "Güncelle",
+    "updating": "Güncelleniyor..."
+  },
+  "BlogPost": {
+    "backToBlog": "Blog'a Dön",
+    "publishedOn": "Yayınlandı",
+    "edit": "Düzenle",
+    "delete": "Sil",
+    "deleting": "Siliniyor...",
+    "deleteConfirm": "Bu yazıyı silmek istediğinizden emin misiniz?",
+    "deleteError": "Yazı silinirken bir hata oluştu",
+    "editError": "Yazı düzenlenirken bir hata oluştu"
   },
   "Footer": {
-    "main": "MyBlog. Tüm hakları saklıdır."
+    "main": "Tüm hakları saklıdır"
+  },
+  "Auth": {
+    "signIn": "Giriş Yap",
+    "email": "Email",
+    "password": "Şifre",
+    "signUp": "Kayıt Ol",
+    "name": "Adınız",
+    "forgotPassword": "Şifrenizi mi unuttunuz?",
+    "confirmPassword": "Şifreyi Onayla",
+    "passwordsDontMatch": "Şifreler eşleşmiyor",
+    "alreadyHaveAccount": "Zaten hesabınız var mı?",
+    "signUpSuccess": "Kayıt başarılı! Giriş yapabilirsiniz."
+  },
+  "Navbar": {
+    "signIn": "Giriş Yap",
+    "signOut": "Çıkış Yap",
+    "signUp": "Kayıt Ol",
+    "home": "Ana Sayfa",
+    "blog": "Blog",
+    "about": "Hakkımızda",
+    "newPost": "Yeni Blog Post"
+  },
+  "Comments": {
+    "title": "Yorumlar",
+    "comment": "Yorum Yap",
+    "commenting": "Yorum Yapılıyor...",
+    "placeholder": "Yorumunuzu yazın...",
+    "cancel": "İptal",
+    "delete": "Sil",
+    "deleteConfirm": "Bu yorumu silmek istediğinizden emin misiniz?",
+    "noComments": "Henüz yorum yapılmamış",
+    "loginToComment": "Yorum yapmak için giriş yapın"
   }
 }

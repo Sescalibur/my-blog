@@ -6,8 +6,6 @@ import { MongoDBAdapter } from "@auth/mongodb-adapter"
 import clientPromise from "../../../../lib/mongodb"
 import { compare } from "bcrypt"
 import { User } from "../../../../models/User"
-import { Session } from "next-auth"
-import { JWT } from "next-auth/jwt"
 
 declare module "next-auth" {
   interface Session {
@@ -15,13 +13,6 @@ declare module "next-auth" {
       id: string
       role: string
     } & DefaultSession["user"]
-  }
-}
-
-declare module "next-auth/jwt" {
-  interface JWT {
-    id?: string
-    role?: string
   }
 }
 
@@ -66,28 +57,27 @@ export const authOptions: AuthOptions = {
       }
     })
   ],
-  session: {
-    strategy: "jwt" as const
-  },
   callbacks: {
-    async session({ session, token }: { session: Session; token: JWT }) {
-      if (token) {
-        session.user.id = token.id!
-        session.user.role = token.role!
-      }
-      return session
-    },
     async jwt({ token, user }) {
       if (user) {
-        token.id = user.id as string
-        token.role = ('role' in user ? user.role : 'user') as string
+        token.id = user.id
+        token.role = user.role
       }
       return token
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id
+        session.user.role = token.role
+      }
+      return session
     }
   },
+  session: {
+    strategy: "jwt"
+  },
   pages: {
-    signIn: '/auth/signin',
-    error: '/auth/error'
+    signIn: '/auth/signin'
   }
 }
 

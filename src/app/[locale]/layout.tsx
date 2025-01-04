@@ -5,6 +5,7 @@ import {routing} from '@/i18n/routing';
 import {Navbar} from '@/components/layout/Navbar';
 import {Footer} from '@/components/layout/Footer';
 import {Providers} from '@/components/Providers';
+import {AuthProvider} from '@/components/AuthProvider';
 import {Geist, Geist_Mono} from 'next/font/google';
 import '@/styles/globals.css';
 
@@ -34,17 +35,19 @@ export default async function LocaleLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <NextIntlClientProvider messages={messages}>
-          <Providers>
-            <div className="min-h-screen flex flex-col bg-background text-foreground">
-              <Navbar />
-              <main className="flex-grow container mx-auto px-4">
-                {children}
-              </main>
-              <Footer />
-            </div>
-          </Providers>
-        </NextIntlClientProvider>
+        <AuthProvider>
+          <NextIntlClientProvider messages={messages}>
+            <Providers>
+              <div className="min-h-screen flex flex-col bg-background text-foreground">
+                <Navbar />
+                <main className="flex-grow container mx-auto px-4">
+                  {children}
+                </main>
+                <Footer />
+              </div>
+            </Providers>
+          </NextIntlClientProvider>
+        </AuthProvider>
       </body>
     </html>
   );
