@@ -6,11 +6,12 @@ import { Logo } from './Logo'
 import { Link } from '@/i18n/routing'
 import { useTranslations } from 'next-intl'
 import { useSession, signOut } from 'next-auth/react'
+import Image from 'next/image'
 
 export function Navbar() {
   const { data: session } = useSession()
   const t = useTranslations('Navbar')
-
+  //console.log(session)
   return (
     <motion.header
       initial={{ y: -100 }}
@@ -46,7 +47,25 @@ export function Navbar() {
         <div className="flex items-center gap-4">
           {session ? (
             <>
-              <span>{session.user.name}</span>
+              <Link
+                href="/profile"
+                className="flex items-center gap-2 text-muted-foreground hover:text-foreground"
+              >
+                {session.user.avatar ? (
+                  <Image
+                    src={session.user.avatar}
+                    alt={session.user.name || ''}
+                    width={32}
+                    height={32}
+                    className="rounded-full"
+                  />
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
+                    {session.user.name?.[0]?.toUpperCase()}
+                  </div>
+                )}
+                <span>{session.user.name}</span>
+              </Link>
               <button
                 onClick={() => signOut()}
                 className="text-muted-foreground hover:text-foreground"

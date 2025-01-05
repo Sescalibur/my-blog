@@ -13,12 +13,23 @@ interface Props {
   };
 }
 
-async function getPost(id: string) {
+interface Post {
+  _id: string;
+  title: string;
+  content: string;
+  author: {
+    _id: string;
+    name: string;
+    email: string;
+  };
+}
+
+async function getPost(id: string): Promise<Post | null> {
   try {
     await dbConnect();
     const post = await Post.findById(id)
       .populate('author', 'name email')
-      .lean();
+      .lean() as Post | null;
 
     if (!post) return null;
 

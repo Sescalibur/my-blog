@@ -54,7 +54,9 @@
     "confirmPassword": "Confirmar contraseña",
     "passwordsDontMatch": "Las contraseñas no coinciden",
     "alreadyHaveAccount": "¿Ya tienes una cuenta?",
-    "signUpSuccess": "Registro exitoso! Ahora puedes iniciar sesión."
+    "signUpSuccess": "Registro exitoso! Ahora puedes iniciar sesión.",
+    "continueWith": "Continuar con {provider}",
+    "orContinueWith": "O continuar con"
   },
   "Navbar": {
     "signIn": "Iniciar sesión",
@@ -75,5 +77,41 @@
     "deleteConfirm": "¿Estás seguro de que quieres eliminar este comentario?",
     "noComments": "No hay comentarios",
     "loginToComment": "Por favor, inicia sesión para comentar"
+  },
+  "Profile": {
+    "title": "Perfil",
+    "avatar": "Avatar",
+    "name": "Nombre",
+    "bio": "Bio",
+    "update": "Actualizar",
+    "updating": "Actualizando...",
+    "updateSuccess": "Perfil actualizado correctamente",
+    "error": "Error al actualizar el perfil",
+    "bioPlaceholder": "Escribe algo sobre ti...",
+    "uploading": "Subiendo...",
+    "changePhoto": "Cambiar foto",
+    "coverImage": "Imagen de portada",
+    "socialLinks": "Enlaces sociales",
+    "websitePlaceholder": "Tu URL de sitio web",
+    "noPosts": "No hay posts",
+    "myPosts": "Mis posts",
+    "noCover": "No hay imagen de portada",
+    "errorFileType": "Tipo de archivo inválido. Por favor, sube una imagen JPEG, PNG, WebP o GIF",
+    "errorFileSize": "El archivo es demasiado grande. El tamaño máximo es de 5MB",
+    "noImage": "No se ha subido ninguna imagen",
+    "imageRequirements": "Tamaño máximo: 5MB. Formatos soportados: JPEG, PNG, WebP, GIF",
+    "uploadSuccess": "Imagen subida correctamente",
+    "uploadError": "Error al subir la imagen",
+    "uploadProgress": "Subiendo: {progress}%",
+    "description": "Administra tus configuraciones de perfil, actualiza tu información y ve tus posts",
+    "imageAlt": {
+      "cover": "Imagen de portada del perfil",
+      "avatar": "Imagen de perfil"
+    },
+    "zoom": "Zoom",
+    "cancel": "Cancelar",
+    "apply": "Aplicar",
+    "cropImage": "Editar imagen",
+    "cropperTitle": "Editar imagen"
   }
 } 

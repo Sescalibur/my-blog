@@ -1,7 +1,6 @@
 import { getServerSession } from "next-auth"
 import { authOptions } from "../../auth/[...nextauth]/route"
 import { Post } from "@/models/Post"
-import mongoose from 'mongoose'
 import { createPostSchema } from '@/schemas/post.schema'
 import { z } from 'zod'
 import { cacheDelete } from '@/lib/cache'

@@ -54,7 +54,9 @@
     "confirmPassword": "Şifreyi Onayla",
     "passwordsDontMatch": "Şifreler eşleşmiyor",
     "alreadyHaveAccount": "Zaten hesabınız var mı?",
-    "signUpSuccess": "Kayıt başarılı! Giriş yapabilirsiniz."
+    "signUpSuccess": "Kayıt başarılı! Giriş yapabilirsiniz.",
+    "continueWith": "{provider} ile devam et",
+    "orContinueWith": "Veya şununla devam et"
   },
   "Navbar": {
     "signIn": "Giriş Yap",
@@ -75,5 +77,41 @@
     "deleteConfirm": "Bu yorumu silmek istediğinizden emin misiniz?",
     "noComments": "Henüz yorum yapılmamış",
     "loginToComment": "Yorum yapmak için giriş yapın"
+  },
+  "Profile": {
+    "title": "Profil Ayarları",
+    "avatar": "Profil Fotoğrafı",
+    "name": "Ad",
+    "bio": "Hakkımda",
+    "update": "Profili Güncelle",
+    "updating": "Güncelleniyor...",
+    "updateSuccess": "Profil başarıyla güncellendi",
+    "error": "Profil güncellenirken bir hata oluştu",
+    "bioPlaceholder": "Kendiniz hakkında bir şeyler yazın...",
+    "uploading": "Yükleniyor...",
+    "changePhoto": "Fotoğraf Değiştir",
+    "coverImage": "Kapak Fotoğrafı",
+    "socialLinks": "Sosyal Medya",
+    "websitePlaceholder": "Web sitenizin adresi",
+    "noPosts": "Henüz yazı yok",
+    "myPosts": "Yazılarım",
+    "noCover": "Kapak fotoğrafı yok",
+    "errorFileType": "Geçersiz dosya tipi. Lütfen JPEG, PNG, WebP veya GIF yükleyin",
+    "errorFileSize": "Dosya çok büyük. Maksimum boyut 5MB",
+    "noImage": "Resim yüklenmedi",
+    "imageRequirements": "Maksimum boyut: 5MB. Desteklenen formatlar: JPEG, PNG, WebP, GIF",
+    "uploadSuccess": "Resim başarıyla yüklendi",
+    "uploadError": "Resim yüklenirken bir hata oluştu",
+    "uploadProgress": "Yükleniyor: {progress}%",
+    "description": "Profil ayarlarınızı yönetin, bilgilerinizi güncelleyin ve yazılarınızı görüntüleyin",
+    "imageAlt": {
+      "cover": "Profil kapak fotoğrafı",
+      "avatar": "Profil fotoğrafı"
+    },
+    "zoom": "Yakınlaştır",
+    "cancel": "İptal",
+    "apply": "Uygula",
+    "cropImage": "Resmi Düzenle",
+    "cropperTitle": "Resmi Kırp"
   }
 }

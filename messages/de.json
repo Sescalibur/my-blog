@@ -54,7 +54,9 @@
     "confirmPassword": "Passwort bestätigen",
     "passwordsDontMatch": "Passwörter stimmen nicht überein",
     "alreadyHaveAccount": "Hast du bereits ein Konto?",
-    "signUpSuccess": "Registrierung erfolgreich! Jetzt kannst du dich einloggen."
+    "signUpSuccess": "Registrierung erfolgreich! Jetzt kannst du dich einloggen.",
+    "continueWith": "Mit {provider} fortfahren",
+    "orContinueWith": "Oder mit"
   },
   "Navbar": {
     "signIn": "Anmelden",
@@ -75,5 +77,41 @@
     "deleteConfirm": "Sind Sie sicher, dass Sie diesen Kommentar löschen möchten?",
     "noComments": "Keine Kommentare",
     "loginToComment": "Bitte melde dich an, um zu kommentieren"
+  },
+  "Profile": {
+    "title": "Profil Einstellungen",
+    "avatar": "Profilbild",
+    "name": "Name",
+    "bio": "Bio",
+    "update": "Profil aktualisieren",
+    "updating": "Aktualisieren...",
+    "updateSuccess": "Profil erfolgreich aktualisiert",
+    "error": "Fehler beim Aktualisieren des Profils",
+    "bioPlaceholder": "Schreiben Sie etwas über sich selbst...",
+    "uploading": "Hochladen...",
+    "changePhoto": "Bild ändern",
+    "coverImage": "Coverbild",
+    "socialLinks": "Soziale Medien",
+    "websitePlaceholder": "Ihre Website URL",
+    "noPosts": "Noch keine Posts",
+    "myPosts": "Meine Posts",
+    "noCover": "Kein Coverbild",
+    "errorFileType": "Ungültiges Dateityp. Bitte laden Sie JPEG, PNG, WebP oder GIF hoch",
+    "errorFileSize": "Datei zu groß. Maximale Größe ist 5MB",
+    "noImage": "Keine Bild hochgeladen",
+    "imageRequirements": "Maximale Größe: 5MB. Unterstützte Formate: JPEG, PNG, WebP, GIF",
+    "uploadSuccess": "Bild erfolgreich hochgeladen",
+    "uploadError": "Fehler beim Hochladen des Bildes",
+    "uploadProgress": "Hochladen: {progress}%",
+    "description": "Verwalten Sie Ihre Profil-Einstellungen, aktualisieren Sie Ihre Informationen und sehen Sie Ihre Posts an",
+    "imageAlt": {
+      "cover": "Profilkapitälchenbild",
+      "avatar": "Profilbild"
+    },
+    "zoom": "Vergrößern",
+    "cancel": "Abbrechen",
+    "apply": "Anwenden",
+    "cropImage": "Bild bearbeiten",
+    "cropperTitle": "Bild bearbeiten"
   }
 } 

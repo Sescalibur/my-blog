@@ -3,6 +3,7 @@ import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { LoginButton } from '@/components/LoginButton'
 
 export default function SignInPage() {
   const t = useTranslations('Auth')
@@ -63,6 +64,23 @@ export default function SignInPage() {
             {t('signIn')}
           </button>
         </form>
+
+        <div className="mt-6">
+          <div className="relative">
+            <div className="absolute inset-0 flex items-center">
+              <div className="w-full border-t border-gray-300" />
+            </div>
+            <div className="relative flex justify-center text-sm">
+              <span className="px-2 bg-background text-muted-foreground">
+                {t('orContinueWith')}
+              </span>
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <LoginButton provider="google" />
+          </div>
+        </div>
       </div>
     </div>
   )
