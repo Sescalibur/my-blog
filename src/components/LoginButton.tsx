@@ -2,7 +2,7 @@
 
 import { signIn } from 'next-auth/react'
 import { useTranslations } from 'next-intl'
-import { Google } from 'lucide-react'
+import { Chrome } from 'lucide-react'
 import { useState } from 'react'
 
 interface LoginButtonProps {
@@ -34,7 +34,7 @@ export function LoginButton({ provider, className }: LoginButtonProps) {
       {isLoading ? (
         <div className="w-5 h-5 border-2 border-primary border-t-transparent rounded-full animate-spin" />
       ) : (
-        <Google className="w-5 h-5" />
+        <Chrome className="w-5 h-5" />
       )}
       {t('continueWith', { provider: 'Google' })}
     </button>

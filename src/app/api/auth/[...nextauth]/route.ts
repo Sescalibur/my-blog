@@ -28,14 +28,29 @@ export const authOptions: AuthOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID!,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+      authorization: {
+        params: {
+          scope: "openid profile email"
+        }
+      },
+      checks: ["pkce", "state"],
+      idToken: true,
+      id: 'google',
+      name: 'Google',
       profile(profile) {
         return {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
           image: profile.picture,
-          // diğer alanları da ekleyebiliriz
+          role: 'user',
+          avatar: profile.picture
         }
+      },
+      style: {
+        logo: "https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png",
+        bg: "#ffffff",
+        text: "#000000"
       }
     }),
     CredentialsProvider({
@@ -48,7 +63,6 @@ export const authOptions: AuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Email ve şifre gerekli')
         }
-
         const user = await User.findOne({ email: credentials.email })
         if (!user) {
           throw new Error('Kullanıcı bulunamadı')
