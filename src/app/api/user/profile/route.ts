@@ -3,7 +3,6 @@ import { authOptions } from "../../auth/[...nextauth]/route"
 import { User } from "@/models/User"
 import { z } from 'zod'
 import dbConnect from '@/lib/mongoose'
-import { headers } from 'next/headers'
 import { NextResponse } from 'next/server'
 
 const updateProfileSchema = z.object({

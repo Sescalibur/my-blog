@@ -7,8 +7,8 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm install
+# Install dependencies with exact versions
+RUN npm ci
 
 # Copy project files
 COPY . .
@@ -22,5 +22,5 @@ RUN npm run build
 # Expose port
 EXPOSE 3000
 
-# Start the application
-CMD ["npm", "start"]
+# Start the application with environment check
+CMD ["sh", "-c", "node -e \"console.log('Environment check:', process.env.MONGODB_URI ? 'MONGODB_URI exists' : 'MONGODB_URI missing')\" && npm start"]
