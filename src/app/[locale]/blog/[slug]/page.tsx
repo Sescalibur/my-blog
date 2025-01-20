@@ -9,10 +9,10 @@ import { PostActions } from '@/components/blog/PostActions';
 import { CommentSection } from '@/components/blog/CommentSection';
 
 interface Props {
-  params: {
+  params: Promise<{
     locale: string;
     slug: string;
-  };
+  }>;
 }
 
 async function getPost(slug: string) {
@@ -31,7 +31,9 @@ async function getPost(slug: string) {
 
 export default async function BlogPostPage({ params }: Props) {
   const t = await getTranslations('BlogPost');
-  const post = await getPost(params.slug);
+  const { locale, slug } = await params;
+  console.log(locale, slug);
+  const post = await getPost(slug);
   const session = await getServerSession(authOptions);
 
   if (!post) {
