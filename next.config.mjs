@@ -16,11 +16,4 @@ const nextConfig = {
   },
 };
 
-// Sadece log alalım
-if (process.env.NODE_ENV === 'production') {
-  console.log('Running in production mode');
-} else {
-  console.log('Running in development mode:', process.env.NODE_ENV);
-}
-
 export default withNextIntl(nextConfig);

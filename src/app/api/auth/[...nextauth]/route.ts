@@ -8,30 +8,7 @@ import { compare } from "bcrypt"
 import { User } from "@/models/User"
 import { Adapter } from "next-auth/adapters"
 import mongoose from 'mongoose'
-import { validateEnv } from '@/utils/env'
 
-// Dosyanın başında environment'ı kontrol et
-validateEnv()
-
-if (!process.env.MONGODB_URI) {
-  console.error('MONGODB_URI:', process.env.MONGODB_URI)
-  console.error('NODE_ENV:', process.env.NODE_ENV)
-  console.error('Process env:', {
-    MONGODB_URI: !!process.env.MONGODB_URI,
-    NODE_ENV: process.env.NODE_ENV,
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
-    // Hassas bilgileri loglamaktan kaçının
-  })
-  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
-}
-else {
-  console.log('Connection successful')
-  console.log('Environment:', {
-    NODE_ENV: process.env.NODE_ENV,
-    IS_PRODUCTION: process.env.NODE_ENV === 'production',
-    NEXTAUTH_URL: process.env.NEXTAUTH_URL
-  })
-}
 
 declare module "next-auth" {
   interface Session {

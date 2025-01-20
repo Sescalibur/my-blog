@@ -31,8 +31,7 @@ async function getPost(slug: string) {
 
 export default async function BlogPostPage({ params }: Props) {
   const t = await getTranslations('BlogPost');
-  const { locale, slug } = await params;
-  console.log(locale, slug);
+  const { slug } = await params;
   const post = await getPost(slug);
   const session = await getServerSession(authOptions);
 
