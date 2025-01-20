@@ -3,10 +3,35 @@ import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
-import clientPromise from "../../../../lib/mongodb"
+import dbConnect from "@/lib/mongoose"
 import { compare } from "bcrypt"
-import { User } from "../../../../models/User"
+import { User } from "@/models/User"
 import { Adapter } from "next-auth/adapters"
+import mongoose from 'mongoose'
+import { validateEnv } from '@/utils/env'
+
+// Dosyanın başında environment'ı kontrol et
+validateEnv()
+
+if (!process.env.MONGODB_URI) {
+  console.error('MONGODB_URI:', process.env.MONGODB_URI)
+  console.error('NODE_ENV:', process.env.NODE_ENV)
+  console.error('Process env:', {
+    MONGODB_URI: !!process.env.MONGODB_URI,
+    NODE_ENV: process.env.NODE_ENV,
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL,
+    // Hassas bilgileri loglamaktan kaçının
+  })
+  throw new Error('Invalid/Missing environment variable: "MONGODB_URI"')
+}
+else {
+  console.log('Connection successful')
+  console.log('Environment:', {
+    NODE_ENV: process.env.NODE_ENV,
+    IS_PRODUCTION: process.env.NODE_ENV === 'production',
+    NEXTAUTH_URL: process.env.NEXTAUTH_URL
+  })
+}
 
 declare module "next-auth" {
   interface Session {
@@ -18,8 +43,10 @@ declare module "next-auth" {
   }
 }
 
+// MongoDB bağlantısını mongoose ile yap
+
 export const authOptions: AuthOptions = {
-  adapter: MongoDBAdapter(clientPromise) as Adapter,
+  adapter: MongoDBAdapter(mongoose.connection.getClient()) as Adapter,
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -63,7 +90,10 @@ export const authOptions: AuthOptions = {
         if (!credentials?.email || !credentials?.password) {
           throw new Error('Email ve şifre gerekli')
         }
+
+        await dbConnect() // Mongoose bağlantısını sağla
         const user = await User.findOne({ email: credentials.email })
+        
         if (!user) {
           throw new Error('Kullanıcı bulunamadı')
         }
