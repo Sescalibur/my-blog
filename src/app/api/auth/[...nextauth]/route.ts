@@ -3,12 +3,10 @@ import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from "next-auth/providers/google"
 import CredentialsProvider from "next-auth/providers/credentials"
 import { MongoDBAdapter } from "@auth/mongodb-adapter"
-import dbConnect from "@/lib/mongoose"
 import { compare } from "bcrypt"
 import { User } from "@/models/User"
 import { Adapter } from "next-auth/adapters"
-import mongoose from 'mongoose'
-
+import clientPromise from '@/lib/mongodb'
 
 declare module "next-auth" {
   interface Session {
@@ -20,10 +18,8 @@ declare module "next-auth" {
   }
 }
 
-// MongoDB bağlantısını mongoose ile yap
-
 export const authOptions: AuthOptions = {
-  adapter: MongoDBAdapter(mongoose.connection.getClient()) as Adapter,
+  adapter: MongoDBAdapter(clientPromise) as Adapter,
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_ID!,
@@ -42,7 +38,6 @@ export const authOptions: AuthOptions = {
       id: 'google',
       name: 'Google',
       profile(profile) {
-        console.log(profile)
         return {
           id: profile.sub,
           name: profile.name,
@@ -69,7 +64,6 @@ export const authOptions: AuthOptions = {
           throw new Error('Email ve şifre gerekli')
         }
 
-        await dbConnect() // Mongoose bağlantısını sağla
         const user = await User.findOne({ email: credentials.email })
         
         if (!user) {
