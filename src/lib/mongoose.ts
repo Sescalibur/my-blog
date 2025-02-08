@@ -1,20 +1,34 @@
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
+const MONGODB_URI = process.env.MONGODB_URI
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
+let cached = global.mongoose
 
-async function dbConnect() {
-  try {
-    const { connection } = await mongoose.connect(MONGODB_URI);
-    
-    if (connection.readyState === 1) {
-      console.log('MongoDB bağlantısı başarılı');
-      return Promise.resolve(true);
-    }
-  } catch (error) {
-    console.error('MongoDB bağlantı hatası:', error);
-    return Promise.reject(error);
-  }
+if (!cached) {
+  cached = global.mongoose = { conn: null, promise: null }
 }
 
-export default dbConnect; 
+async function dbConnect() {
+  if (cached.conn) {
+    return cached.conn
+  }
+
+  if (!cached.promise) {
+    const opts = {
+      bufferCommands: false,
+    }
+
+    cached.promise = mongoose.connect(MONGODB_URI, opts)
+  }
+
+  try {
+    cached.conn = await cached.promise
+  } catch (e) {
+    cached.promise = null
+    throw e
+  }
+
+  return cached.conn
+}
+
+export default dbConnect

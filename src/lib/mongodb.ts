@@ -1,29 +1,27 @@
-import { MongoClient } from 'mongodb'
+import mongoose from 'mongoose'
+
+if (!process.env.MONGODB_URI) {
+  throw new Error('Please add your Mongo URI to .env.local')
+}
 
 const uri = process.env.MONGODB_URI as string
-const options = {
-  retryWrites: true,
-  w: 'majority'
-}
 
-let client
-let clientPromise: Promise<MongoClient>
+let clientPromise: Promise<typeof mongoose>
 
 if (process.env.NODE_ENV === 'development') {
-  const globalWithMongo = global as typeof globalThis & {
-    _mongoClientPromise?: Promise<MongoClient>
+  // Development modunda global değişken kullan
+  let globalWithMongoose = global as typeof globalThis & {
+    _mongoosePromise?: Promise<typeof mongoose>
   }
 
-  if (!globalWithMongo._mongoClientPromise) {
-    client = new MongoClient(uri, options)
-    globalWithMongo._mongoClientPromise = client.connect()
+  if (!globalWithMongoose._mongoosePromise) {
+    globalWithMongoose._mongoosePromise = mongoose.connect(uri)
   }
-  clientPromise = globalWithMongo._mongoClientPromise
-  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
+
+  clientPromise = globalWithMongoose._mongoosePromise
 } else {
-  client = new MongoClient(uri, options)
-  clientPromise = client.connect()
-  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
+  // Production modunda direkt bağlan
+  clientPromise = mongoose.connect(uri)
 }
 
-export default clientPromise 
+export default clientPromise

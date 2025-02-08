@@ -20,7 +20,8 @@ declare module "next-auth" {
   }
 }
 
-// MongoDB bağlantısını mongoose ile yap
+// MongoDB bağlantısını sağla
+await dbConnect()
 
 export const authOptions: AuthOptions = {
   adapter: MongoDBAdapter(mongoose.connection.getClient()) as Adapter,
