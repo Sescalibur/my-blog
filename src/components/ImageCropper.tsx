@@ -87,7 +87,7 @@ export function ImageCropper({ image, aspect, type, onCropComplete, onCancel }: 
       console.error(e)
     }
   }, [croppedAreaPixels, image, onCropComplete, type])
-  console.log(type)
+  //console.log(type)
   return (
     <Dialog open={true} onClose={onCancel} className="relative z-50">
       <div className="fixed inset-0 bg-black/30" aria-hidden="true" />

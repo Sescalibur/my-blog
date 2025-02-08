@@ -43,8 +43,8 @@ export function CoverUpload({ currentImage, onUpload }: CoverUploadProps) {
         setShowCropper(true)
       }
       reader.readAsDataURL(file)
-    } catch (err: any) {
-      toast.error(err.message)
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Unknown error')
     }
   }
 
@@ -61,6 +61,9 @@ export function CoverUpload({ currentImage, onUpload }: CoverUploadProps) {
       const formData = new FormData()
       formData.append('file', blob, 'cover-image.jpg')
       formData.append('type', 'cover')
+      formData.append('width', '1500')
+      formData.append('height', '500')
+      formData.append('quality', '90')
 
       const res = await fetch('/api/upload', {
         method: 'POST',
@@ -75,8 +78,8 @@ export function CoverUpload({ currentImage, onUpload }: CoverUploadProps) {
       setPreviewUrl(data.secure_url)
       onUpload(data.secure_url)
       toast.success(t('uploadSuccess'), { id: loadingToast })
-    } catch (err: any) {
-      toast.error(err.message, { id: loadingToast })
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Upload failed', { id: loadingToast })
     } finally {
       setUploading(false)
       setProgress(0)

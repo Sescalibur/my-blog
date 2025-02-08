@@ -53,7 +53,7 @@ export function ImageUpload({
         setSelectedImage(reader.result as string)
         setShowCropper(true)
       }
-      console.log(uploadType)
+      //console.log(uploadType)
       reader.readAsDataURL(file)
     } catch (err: any) {
       toast.error(err.message)
@@ -74,7 +74,7 @@ export function ImageUpload({
       formData.append('file', blob, `${type}-image.jpg`)
       formData.append('type', type)
 
-      console.log('Uploading with type:', type)
+      //console.log('Uploading with type:', type)
 
       const res = await fetch('/api/upload', {
         method: 'POST',

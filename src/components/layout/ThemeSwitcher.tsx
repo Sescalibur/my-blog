@@ -20,8 +20,8 @@ export function ThemeSwitcher() {
   }, [])
 
   useEffect(() => {
-    console.log('Current theme:', theme)
-    console.log('Resolved theme:', resolvedTheme)
+    //console.log('Current theme:', theme)
+    //console.log('Resolved theme:', resolvedTheme)
   }, [theme, resolvedTheme])
 
   if (!mounted) {
@@ -41,9 +41,10 @@ export function ThemeSwitcher() {
           <DropdownMenuItem
             key={name}
             onClick={() => {
-              console.log('Changing theme to:', name);
+              //console.log('Changing theme to:', name);
               setTheme(name);
             }}
+
             className={`flex items-center gap-2 px-3 py-2 hover:bg-accent rounded-sm cursor-pointer
               ${theme === name ? 'text-primary' : 'text-muted-foreground'}`}
           >

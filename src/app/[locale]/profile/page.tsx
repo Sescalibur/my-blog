@@ -9,9 +9,37 @@ import { ProfileSkeleton } from '@/components/profile/ProfileSkeleton'
 import { User } from '@/models/User'
 import { Post } from '@/models/Post'
 import dbConnect from '@/lib/mongoose'
-import Image from 'next/image'
-import { Metadata } from 'next'
+import { Metadata } from 'next/types'
 import { ProfileImage } from '@/components/profile/ProfileImage'
+import { TFunction } from 'next-intl'
+
+interface SerializedUser {
+  _id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  coverImage?: string;
+  bio?: string;
+  createdAt?: string;
+  updatedAt?: string;
+  socialLinks?: {
+    _id?: string;
+    twitter?: string;
+    github?: string;
+    linkedin?: string;
+    website?: string;
+  } | null;
+}
+
+interface SerializedPost {
+  _id: string;
+  title: string;
+  content: string;
+  author: string;
+  createdAt?: string;
+  updatedAt?: string;
+  __v: number;
+}
 
 async function getUserWithPosts(userId: string) {
   await dbConnect();
@@ -23,7 +51,7 @@ async function getUserWithPosts(userId: string) {
 
   if (!user) return null;
 
-  const serializedUser = {
+  const serializedUser: SerializedUser = {
     ...user,
     _id: user._id.toString(),
     createdAt: user.createdAt?.toISOString(),
@@ -34,7 +62,7 @@ async function getUserWithPosts(userId: string) {
     } : null
   };
 
-  const serializedPosts = posts.map(post => ({
+  const serializedPosts: SerializedPost[] = posts.map(post => ({
     ...post,
     _id: post._id.toString(),
     author: post.author.toString(),
@@ -95,7 +123,7 @@ async function ProfileContent({
   t 
 }: { 
   userId: string
-  t: any 
+  t: TFunction 
 }) {
   const data = await getUserWithPosts(userId)
   
@@ -106,20 +134,24 @@ async function ProfileContent({
   return (
     <div className="py-12">
       {/* Kapak Fotoğrafı */}
-      <div className="relative h-[200px] md:h-[300px] -mx-4 bg-muted">
-        {data.user.coverImage ? (
-          <ProfileImage
-            src={data.user.coverImage}
-            alt="Cover"
-            priority
-            sizes="100vw"
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
-            {t('noCover')}
-          </div>
-        )}
-      </div>
+      
+        <div className="w-full max-w-[72vw] max-h-[24vw] max-md:hidden mx-auto mb-12 relative aspect-[3/1]">
+          {data.user.coverImage ? (
+            <ProfileImage
+              src={data.user.coverImage}
+              alt="Cover"
+              priority
+              sizes="100vw"
+
+              isCover
+            />
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center text-muted-foreground">
+              {t('noCover')}
+            </div>
+          )}
+        </div>
+      
 
       <div className="container max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] gap-8">
