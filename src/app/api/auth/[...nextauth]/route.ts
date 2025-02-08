@@ -42,6 +42,7 @@ export const authOptions: AuthOptions = {
       id: 'google',
       name: 'Google',
       profile(profile) {
+        console.log(profile)
         return {
           id: profile.sub,
           name: profile.name,
