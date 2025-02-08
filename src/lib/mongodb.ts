@@ -1,35 +1,29 @@
-import mongoose from 'mongoose';
-import { MongoClient } from 'mongodb';
+import { MongoClient } from 'mongodb'
 
-const MONGODB_URI = process.env.MONGODB_URI as string;
-
-// Global type tanımlaması
-declare global {
-  var _mongoClientPromise: Promise<MongoClient> | undefined;
+const uri = process.env.MONGODB_URI as string
+const options = {
+  retryWrites: true,
+  w: 'majority'
 }
 
-// MongoDB Native client için
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
+let client
+let clientPromise: Promise<MongoClient>
 
 if (process.env.NODE_ENV === 'development') {
-  // Development'da global client kullan
-  if (!global._mongoClientPromise) {
-    client = new MongoClient(MONGODB_URI);
-    global._mongoClientPromise = client.connect();
+  const globalWithMongo = global as typeof globalThis & {
+    _mongoClientPromise?: Promise<MongoClient>
   }
-  clientPromise = global._mongoClientPromise;
+
+  if (!globalWithMongo._mongoClientPromise) {
+    client = new MongoClient(uri, options)
+    globalWithMongo._mongoClientPromise = client.connect()
+  }
+  clientPromise = globalWithMongo._mongoClientPromise
+  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
 } else {
-  // Production'da yeni client oluştur
-  client = new MongoClient(MONGODB_URI);
-  clientPromise = client.connect();
+  client = new MongoClient(uri, options)
+  clientPromise = client.connect()
+  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
 }
 
-// Mongoose bağlantısını da kur
-mongoose.connect(MONGODB_URI).then(() => {
-  console.log('Mongoose bağlantısı başarılı');
-}).catch((err) => {
-  console.error('Mongoose bağlantı hatası:', err);
-});
-
-export default clientPromise; 
+export default clientPromise 
