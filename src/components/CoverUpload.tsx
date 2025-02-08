@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { ImageCropper } from './ImageCropper'
 import Image from 'next/image'
 import { useTranslations } from 'next-intl'
-import { AlertCircle, Upload } from 'lucide-react'
+import { Upload } from 'lucide-react'
 import { toast } from 'sonner'
 
 interface CoverUploadProps {

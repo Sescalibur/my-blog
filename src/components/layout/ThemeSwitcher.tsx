@@ -12,12 +12,17 @@ const themes = [
 ]
 
 export function ThemeSwitcher() {
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  useEffect(() => {
+    console.log('Current theme:', theme)
+    console.log('Resolved theme:', resolvedTheme)
+  }, [theme, resolvedTheme])
 
   if (!mounted) {
     return null
@@ -35,7 +40,10 @@ export function ThemeSwitcher() {
         {themes.map(({ name, icon: Icon }) => (
           <DropdownMenuItem
             key={name}
-            onClick={() => setTheme(name)}
+            onClick={() => {
+              console.log('Changing theme to:', name);
+              setTheme(name);
+            }}
             className={`flex items-center gap-2 px-3 py-2 hover:bg-accent rounded-sm cursor-pointer
               ${theme === name ? 'text-primary' : 'text-muted-foreground'}`}
           >

@@ -7,7 +7,8 @@ import {Footer} from '@/components/layout/Footer';
 import {Providers} from '@/components/Providers';
 import {AuthProvider} from '@/components/AuthProvider';
 import {Geist, Geist_Mono} from 'next/font/google';
-import '@/styles/globals.css';
+import '@/app/globals.css';
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,7 +27,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: {locale: string};
 }) {
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale)) {
     notFound();
   }
 
