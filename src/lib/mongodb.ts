@@ -1,9 +1,10 @@
 import mongoose from 'mongoose'
 
 
-const uri = process.env.MONGODB_URI
+const uri = process.env.MONGODB_URI as string
 
 let clientPromise: Promise<typeof mongoose>
+
 
 if (process.env.NODE_ENV === 'development') {
   // Development modunda global değişken kullan
