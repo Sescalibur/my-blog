@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
 // Mongoose bağlantı ayarları
-const options = {
+const options: mongoose.ConnectOptions = {
   bufferCommands: true,
   autoIndex: true,
   autoCreate: true

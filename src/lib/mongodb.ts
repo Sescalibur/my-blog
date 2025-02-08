@@ -3,21 +3,22 @@ import { MongoClient } from 'mongodb';
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
+// Global type tanımlaması
+declare global {
+  var _mongoClientPromise: Promise<MongoClient> | undefined;
+}
+
 // MongoDB Native client için
 let client: MongoClient;
 let clientPromise: Promise<MongoClient>;
 
 if (process.env.NODE_ENV === 'development') {
   // Development'da global client kullan
-  let globalWithMongo = global as typeof globalThis & {
-    _mongoClientPromise?: Promise<MongoClient>
-  }
-
-  if (!globalWithMongo._mongoClientPromise) {
+  if (!global._mongoClientPromise) {
     client = new MongoClient(MONGODB_URI);
-    globalWithMongo._mongoClientPromise = client.connect();
+    global._mongoClientPromise = client.connect();
   }
-  clientPromise = globalWithMongo._mongoClientPromise;
+  clientPromise = global._mongoClientPromise;
 } else {
   // Production'da yeni client oluştur
   client = new MongoClient(MONGODB_URI);
