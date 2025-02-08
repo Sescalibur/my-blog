@@ -1,25 +1,29 @@
-import mongoose from 'mongoose'
-
+import { MongoClient } from 'mongodb'
 
 const uri = process.env.MONGODB_URI as string
-
-let clientPromise: Promise<typeof mongoose>
-
-
-if (process.env.NODE_ENV === 'development') {
-  // Development modunda global değişken kullan
-  let globalWithMongoose = global as typeof globalThis & {
-    _mongoosePromise?: Promise<typeof mongoose>
-  }
-
-  if (!globalWithMongoose._mongoosePromise) {
-    globalWithMongoose._mongoosePromise = mongoose.connect(uri)
-  }
-
-  clientPromise = globalWithMongoose._mongoosePromise
-} else {
-  // Production modunda direkt bağlan
-  clientPromise = mongoose.connect(uri)
+const options = {
+  retryWrites: true,
+  w: 'majority'
 }
 
-export default clientPromise
+let client
+let clientPromise: Promise<MongoClient>
+
+if (process.env.NODE_ENV === 'development') {
+  const globalWithMongo = global as typeof globalThis & {
+    _mongoClientPromise?: Promise<MongoClient>
+  }
+
+  if (!globalWithMongo._mongoClientPromise) {
+    client = new MongoClient(uri, options)
+    globalWithMongo._mongoClientPromise = client.connect()
+  }
+  clientPromise = globalWithMongo._mongoClientPromise
+  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
+} else {
+  client = new MongoClient(uri, options)
+  clientPromise = client.connect()
+  console.log('MongoDB bağlantısı başarıyla oluşturuldu')
+}
+
+export default clientPromise 
